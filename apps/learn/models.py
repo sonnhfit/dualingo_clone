@@ -6,11 +6,17 @@ from django.db import models
 class Level(models.Model):
     name = models.CharField(max_length=200, null=True, blank=True)
 
+    @property
+    def get_lv(self):
+        return "abc" +self.name
+
+
 
 class Chapter(models.Model):
     title = models.CharField(max_length=255, null=True, blank=True)
     img = models.CharField(max_length=255)
     level = models.ForeignKey(Level, on_delete=models.DO_NOTHING, null=True, blank=True, default=None)
+
 
     def __str__(self):
         return self.title
